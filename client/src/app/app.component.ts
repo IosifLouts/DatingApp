@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { User } from './_models/user';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'The Dating app!';
   users : any;
-  osfp ="protathlitis ksanagi adbndfh";
+  
 
-  constructor(private http: HttpClient) {
+  constructor(private accountService: AccountService) {
 
   }
 
   ngOnInit() {
-    this.getUsers();
+    this.setCurrentUser();
+  }
+ 
+  //We wanna take a look inside our browser local storage and see if we got a key or an object with the key of user
+  setCurrentUser(){
+    const user: User = JSON.parse(localStorage.getItem('user')); //we use parse to take out the object of its stringified form
+    this.accountService.setCurrrentUser(user);
   }
 
-  getUsers() {
-    this.http.get('https://localhost:5001/api/users').subscribe(response => {
-      this.users = response;
-    }, error => {
-      console.log(error);
-    })
-  }
+  
 
 }
