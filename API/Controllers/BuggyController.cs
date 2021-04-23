@@ -15,7 +15,7 @@ namespace API.Controllers
 
         [Authorize] //This tribute requires the user to be authenticated
         [HttpGet("Auth")]
-        public ActionResult<string> GetSecret()
+        public ActionResult<string> GetSecret() //test 401 Unauthorized responses
         {
             return "Secret Text";
         }
