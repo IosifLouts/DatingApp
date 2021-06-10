@@ -19,7 +19,7 @@ const routes: Routes = [
    canActivate: [AuthGuard],
    children: [
     {path:'members',component: MemberListComponent, canActivate: [AuthGuard]},
-    {path:'members/:id',component: MemberDetailComponent}, //each one of our members is gonna have a route parameter. :id is a place holder for this parameter
+    {path:'members/:username',component: MemberDetailComponent}, //each one of our members is gonna have a route parameter. :id is a place holder for this parameter
     {path:'lists',component: ListsComponent},
     {path:'messages',component: MessagesComponent},
    ] //all of our children are covered by a single Authguard
